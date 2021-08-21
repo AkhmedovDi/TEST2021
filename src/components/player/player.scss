@@ -1,0 +1,180 @@
+@import '../../utlis/variables.scss';
+
+.player {
+  height: calc(100vh - 348px);
+  width: 100%;
+
+  @media (max-width: 1250px) {
+    height: auto;
+  }
+}
+
+.location {
+  margin: 20px 0;
+  font-size: 20px;
+
+  & > p {
+    max-width: 80%;
+    line-height: 26px;
+  }
+
+  &-region {
+    font-weight: 700;
+    color: $hover-color;
+  }
+
+  @media (max-width: 769px) {
+    & > p {
+      max-width: 100%;
+    }
+  }
+
+  @media (max-width: 425px) {
+    font-size: 14px;
+
+    & > p {
+      line-height: normal;
+    }
+  }
+}
+
+.cameras {
+  overflow: hidden;
+  padding: 0 48px;
+  padding-bottom: 25px;
+
+  @media (max-width: 426px) {
+    padding: 0 20px;
+  }
+}
+
+.camera {
+  //   margin-right: 30px;
+  position: relative;
+
+  &-link {
+    width: 210px;
+    // height: 120px;
+    margin: 0 15px;
+    display: block;
+
+    & img {
+      width: 100%;
+      height: 100%;
+    }
+    @media (max-width: 426px) {
+      margin: 0 5px;
+      width: 130px;
+    }
+  }
+
+  &::before {
+    opacity: 0;
+    content: '';
+    top: 0;
+    left: 0;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(
+      0deg,
+      rgba(10, 133, 234, 0.6),
+      rgba(10, 133, 234, 0.6)
+    );
+    transition: opacity 200ms ease-out;
+    cursor: pointer;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 8px;
+    width: 100%;
+    background-color: #0acc79;
+    opacity: 0;
+    transition: opacity 200ms ease-out;
+  }
+
+  &-number {
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    color: #fff;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 200ms ease-out;
+
+    & > p {
+      text-align: center;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 16px;
+    }
+
+    @media (max-width: 426px) {
+      font-size: 14px;
+    }
+  }
+
+  &:hover {
+    &::before {
+      opacity: 1;
+    }
+
+    &::after {
+      opacity: 1;
+    }
+
+    .camera-number {
+      opacity: 1;
+    }
+  }
+}
+
+// .camera-first {
+//     margin-left: 55px;
+// }
+
+@mixin arrow {
+  position: absolute;
+  display: flex;
+  height: 100%;
+  z-index: 999;
+  cursor: pointer;
+}
+
+.prevArrow {
+  @include arrow();
+  left: 0;
+  top: 0;
+  transform: translateX(-100%);
+}
+
+.nextArrow {
+  @include arrow();
+  right: 0;
+  transform: translateX(100%);
+  top: 0;
+}
+
+.arrowWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  background-color: $hover-color;
+
+  @media (max-width: 426px) {
+    width: 15px;
+
+    & > img {
+      width: 80%;
+    }
+  }
+}
